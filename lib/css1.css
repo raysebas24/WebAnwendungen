@@ -1,0 +1,125 @@
+body {
+    font: 14px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: rgb(136, 130, 130);
+    background-color:rgb(31, 52, 109);
+    overflow-y:scroll;
+}
+
+.navbar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+#collapsibleNavbar ul li a.active-page {
+    color: whitesmoke;
+    font: bold;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.bg-1 {
+    background-color: rgb(31, 52, 109);
+    color: white;
+    letter-spacing: 3px;
+}
+
+.container-fluid {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.bg-2 {
+    text-align: center;
+    background-color: lightgrey;
+    color: black;
+}
+
+.bg-3 {
+    text-align: center;
+    background-color:rgb(31, 52, 109);
+    color: white;
+}
+
+#boot-carousel {
+    padding-top:70px;
+}
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(134,151,197);
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(31, 52, 109);
+}
+
+.margin {
+    margin-bottom: 30px;
+}
+
+a.bg-3:hover {
+    color:lightgrey;
+    text-decoration: none;
+}
+
+a.bg-2:hover {
+    color: rgb(31, 52, 109);
+    text-decoration: none;
+}
+
+a.bg-3 {
+    color: white;
+}
+
+a.bg-2 {
+    color: black;
+}
+
+a:hover {
+    color:lightgrey;
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.www.bg-3:hover {
+    color:lightgrey;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.www.bg-2:hover {
+    color: rgb(31, 52, 109);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul {
+    text-align: left;
+}
+
+.inhalt {
+    text-align: left;
+}
+
+.align-left {
+    text-align:left;
+}
+
+.float-left {
+    float: left;
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Bootstrap: Latest compiled and minified CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!--jQuery library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Bootstrap: Popper JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!--Bootstrap: Latest compiled JavaScript-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--Montserrat-Schrift importieren-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!--jQuery-Validation Plugin. Clientseitige Formularvalidierung-->
+    <script src="js/jquery.validate.js"></script>
+    <!--Eigener JS-File-->
+    <script src="lib/js1.js"></script>
+    <!--Eigener CSS-File-->
+    <link rel="stylesheet" type="text/css" href="lib/css1.css">
+
+    <title>hafen albstadt-sigmaringen</title>
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-sm fixed-top bg-1 navbar-dark">
+            <a class="navbar-brand" href="index.html">hafen albsig</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+           
+           <div class="collapse navbar-collapse" id="collapsibleNavbar">
+               <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">home</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="hafen.html">hafen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="betreiber.html">betreiber</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  active-page" href="buchen.html">buchen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.html">admin</a>
+                    </li>
+               </ul>
+           </div>
+        </nav>
+        <main>
+            <section class="container-fluid bg-2">            
+                <div class="row" id="dyntarget">
+                    <div class="col-md">
+                        <p class="margin"></p>
+                        <h3 class="margin">deinen liegeplatz</h3>
+                        <p class="margin">Landstrom, WLAN, alles was das Herz begehrt! </p>
+                        <img src="lib/brief-quadrat.jpg" class="img-fluid rounded-circle" alt="buchen">
+                    </div>
+                    <div class="col-md">
+                        <p class="margin"></p>
+                        <h3 class="margin align-left">... jetzt bequem online anfragen!</h3>
+                        <p class="margin inhalt">Wir brauchen nur noch ein paar Informationen von dir.</p>
+                        <form class="was-validated" id="form1">
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for="nachname" class="float-left">Nachname:</label>
+                                    <input type="text" class="form-control " id="nachname" placeholder="Nachname eingeben" name="nachname" required>
+                                    <p></p>                     
+                                </div>
+                                <div class="col-md">
+                                    <label for="vorname" class="float-left">Vorname:</label>
+                                    <input type="text" class="form-control" id="vorname" placeholder="Vorname eingeben" name="vorname" required>
+                                    <p></p> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for="email" class="float-left">Email:</label>
+                                    <input type="email" class="form-control " id="email" placeholder="Email eingeben" name="email" required>
+                                    <p></p>                     
+                                </div>
+                                <div class="col-md">
+                                    <label for="handynr" class="float-left">Handynummer:</label>
+                                    <input type="text" class="form-control" id="handynr" placeholder="Handynummer eingeben" name="handynr" required>
+                                    <p></p> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for="beginn" class="float-left">Beginn:</label>
+                                    <input type="date" class="form-control " id="beginn" name="beginn" required>
+                                    <p></p> 
+                                </div>
+                                <div class="col-md">
+                                    <label for="ende" class="float-left">Ende:</label>
+                                    <input type="date" class="form-control " id="ende" name="ende" required>
+                                    <p></p> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for ="bootslaenge" class="float-left">Bootslänge:</label>
+                                    <select id="bootslaenge" name="bootslaenge" class="form-control" required>
+                                        <option value="lt5">bis 5m</option>
+                                        <option value="5to10">5 bis 10m</option>
+                                        <option value="gt10">größer als 10m</option>
+                                    </select>
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <button type="botton" id="addrequest" class="btn btn-secondary float-left">Anfrage stellen</button>
+                                </div>
+                            </div>
+                        </form>
+                </div>
+                
+                
+            </section>
+        </main>
+        <footer class="container-fluid bg-3">
+            <p>&copy; hafen-albsig2022</p>
+        </footer>
+
+        
+        <script>
+            window.addEventListener("load",function() {                     //Wird beim laden der Seite ausgeführt
+                var form =document.getElementById("form1");                 //Zugriff auf Element 'form1'
+                form.addEventListener("submit",function(event){             //Wird ausgelöst wenn 'form' gesendet wird
+                    event.preventDefault();                                 //Geht in Default-Zustand wenn ein Fehler aufgetreten ist?!
+                });
+            });
+
+            $('#addrequest').click(function() {                             //Wird beim Click auf 'Anfrage stellen' ausgeführt
+                //$('#form1').validate();                                   //???
+                console.log('Buchen: button submit clicked');
+                if($('#form1').valid()) {                                   //Überprüft ob das Ausgewählte Formular gültig ist
+                    var result = {};
+                    $.each($('form').serializeArray(),function() {          //Codiert die Formularelemente in Array aus Namen und Werten
+                        result[this.name]=this.value;                       //Befüllt das Array 'result' mit den Eingabewerten
+                    });
+                    $.ajax({                                                //Ausführen einer Asynchronen HTTP-Anfrage
+                        url: 'http://localhost:8000/api/buchungsanfrage',   //???...
+                        method: 'post',
+                        contentType: 'application/json; charset=utf-8',
+                        cache: false,
+                        data: JSON.stringify(result)                        //Konvertiert JS-Objekt in JSON-Objekt
+                    }).done(function (response) {
+                        /*Hier JSON Objekt noch in Konsole ausgeben für Debugging
+                        Außerdem fehlt noch das Forwarding auf die Erfolgsbuchung, Clientseitige Überprüfung und Serverseitige Überprüfung*/
+                        /*let url = "https://www.w3docs.com";
+                        window.location.href = url;*/
+                        var content='';
+                        content += '<div class="col-md">';                  //Ab hier wird die Antwortseite zusammengebaut...
+                        content += '<p class="margin"></p>';
+                        content +=  '<h3 class="margin">Vielen Dank für deine Buchungsanfrage!</h3>';
+                        content += '<p class="margin">Deine Anfrage-ID: ' + response.id + '</p>';
+                        content += '<p class="margin">Bitte bewahre diese ID zur Identifikation deiner Buchungsanfrage auf.</p>';
+                        content += '<p class="margin">Hier nochmal deine angefragten Daten:</p>';
+                        content += '<p class="margin">Nachname:  ' + response.nachname + '</p>';
+                        content += '<p class="margin">Vorname:  ' + response.vorname + '</p>';
+                        content += '<p class="margin">Email:  ' + response.email + '</p>';
+                        content += '<p class="margin">Handynummer:  ' + response.handynr + '</p>';
+                        content += '<p class="margin">Beginn:  ' + response.beginn + '</p>';
+                        content += '<p class="margin">Ende:  ' + response.ende + '</p>';
+                        content += '<p class="margin">Bootslänge:  ' + response.bootslaenge + '</p>';
+                        content += '</div>';
+                        $('#dyntarget').html(content);                      //Läd die Seite neu und gibt die Formulardaten wieder
+                        console.log("Buchen: jetzt bin ich in der Done-Funktion");
+                        console.log(response);
+                    }).fail(function (jqXHR, statusText, error) {           //Fehlerausgabe
+                        console.log("Buchen: jetzt bin ich in der Fail-Funktion");
+                        console.log('Buchen: Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                    });
+                }
+        });
+        </script>
+
+  </body>
+</html>

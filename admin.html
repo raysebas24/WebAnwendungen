@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Bootstrap: Latest compiled and minified CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!--jQuery library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--Bootstrap: Popper JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!--Bootstrap: Latest compiled JavaScript-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--Montserrat-Schrift importieren-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!--jQuery-Validation Plugin. Clientseitige Formularvalidierung-->
+    <script src="js/jquery.validate.js"></script>
+    <!--Eigener JS-File-->
+    <script src="lib/js1.js"></script>
+    <!--Eigener CSS-File-->
+    <link rel="stylesheet" type="text/css" href="lib/css1.css">
+
+    <title>hafen albstadt-sigmaringen</title>
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-sm fixed-top bg-1 navbar-dark">
+            <a class="navbar-brand" href="index.html">hafen albsig</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+           
+           <div class="collapse navbar-collapse" id="collapsibleNavbar">
+               <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">home</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="hafen.html">hafen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="betreiber.html">betreiber</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buchen.html">buchen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active-page" href="admin.html">admin</a>
+                    </li>
+               </ul>
+           </div>
+        </nav>
+        <main>
+            <section class="container-fluid bg-2">
+                <div class="row">
+                    <section class="col-md-9">
+                        <p class="margin"></p>
+                        <h3 class="margin">Buchungsübersicht</h3>
+                        <div class="table-responsive-md">
+                            <table class="table" id="datentabelle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nachname</th>
+                                        <th scope="col">Vorname</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Handynummer</th>
+                                        <th scope="col">Beginn</th>
+                                        <th scope="col">Ende</th>
+                                        <th scope="col">Bootslänge</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <section class="col-md">
+                        <p class="margin"></p>
+                        <h3 class="margin align-left">Buchungsanfragen bearbeiten:</h3>
+                        <form id="delete">
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for="del-id" class="float-left">Zu löschende ID:</label>
+                                    <input type="text" class="form-control " id="del-id" placeholder="ID eingeben" name="del-id" required>
+                                    <p></p>
+                                    <button id="delete-by-id" class="btn btn-secondary float-left">Anfrage löschen</button>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- <form id="all-delete">
+                            <div class="row">
+                                <div class="col-md">
+                                    <p></p>
+                                    <button id="delete-all" class="btn btn-secondary float-left">Alle Anfragen löschen</button>
+                                </div>
+                            </div>
+                        </form>
+                    -->
+                    </section>
+                </div>
+            </section>
+        </main>
+        <footer class="container-fluid bg-3">
+            <p>&copy; hafen-albsig2022</p>
+        </footer>
+        
+
+        <script>
+            window.addEventListener("load",function() {                         //Wird beim laden der Seite ausgeführt
+                var form =document.getElementById("delete");                    //Zugriff auf Element 'delete'
+                form.addEventListener("submit",function(event){                 //Wird ausgelöst wenn 'form' gesendet wird
+                    event.preventDefault();                                     //Geht in Default-Zustand wenn ein Fehler aufgetreten ist?!
+                });
+            });
+
+            $('#delete-by-id').click(function() {                               //Wird beim Click auf 'Anfrage löschen' ausgeführt
+                //$('#delete').validate();                                      //???
+                console.log('Admin: button delete clicked');
+                if($('#delete').valid()) {                                      //Überprüft ob das Ausgewählte Formular gültig ist
+                    var id =$('#del-id').val();                                 //Gibt denn eingegebenen Wert (zu löschenden) zurück
+                    $.ajax({                                                    //Ausführen einer Asynchronen HTTP-Anfrage
+                        url: 'http://localhost:8000/api/buchungsanfrage/'+id,   //???
+                        method: 'delete',
+                        contentType: 'application/json; charset=utf-8',
+                        cache: false,
+                        /*data: JSON.stringify(result)*/
+                    }).done(function (response) {
+                        /*Hier JSON Objekt noch in Konsole ausgeben für Debugging
+                        Außerdem fehlt noch das Forwarding auf die Erfolgsbuchung, Clientseitige Überprüfung und Serverseitige Überprüfung*/
+                        /*let url = "https://www.w3docs.com";
+                        window.location.href = url;*/
+                        location.reload();                                      //Läd die aktuelle URL neu
+                        console.log("Admin: jetzt bin ich in der Done-Funktion");
+                        console.log(response);
+                    }).fail(function (jqXHR, statusText, error) {               //Fehlerausgabe
+                        console.log("Admin: jetzt bin ich in der Fail-Funktion");
+                        console.log('Admin: Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                    });
+                }
+            });
+
+            $(document).ready(function() {                                      //Code wird erst ausgeführt, wenn Seite fertig geladen ist
+            console.log('Admin: Document ready, loading data from Service');
+            $.ajax({                                                            //Ausführen einer Asynchronen HTTP-Anfrage
+                url: 'http://localhost:8000/api/buchungsanfrage/alle',
+                method: 'get',
+                contentType: 'application/json; charset=utf-8',
+                cache: false,
+				dataType: 'json'
+            }).done(function (response) {
+                console.log('Admin: Data loaded successfully');
+                console.log(response);
+
+                /* die Idee bei diesem Prinzip ist, dass HTML Code als Text angesehen wird. 
+                    Diesen können wir häppchen-weise in einer Variable zusammen setzen 
+                    und dann auch ausgeben 
+                    Hinweis: Damit man Quotes/doppelte Anführungsstriche NICHT escapen muss, 
+                    kann man bei jQuery einfache Anführungszeichen verwenden    
+                */
+                // hilfsvariable anlegen
+                var content = '';
+                for (i = 0; i < response.length; i++) {
+                    var obj = response[i];
+
+                    content += '<tr>';
+                    content += '<td>' + obj.id + '</td>';
+                    content += '<td>' + obj.nachname + '</td>';
+                    content += '<td>' + obj.vorname + '</td>';
+                    content += '<td>' + obj.email + '</td>';
+                    content += '<td>' + obj.handynr + '</td>';
+                    content += '<td>' + obj.beginn + '</td>';
+                    content += '<td>' + obj.ende + '</td>';
+                    content += '<td>' + obj.bootslaenge + '</td>';
+                    content += '</tr>';
+                }
+                content += '</table>';
+
+                // zusammengesetzen Code im Dokument ausgeben
+                $('#datentabelle').append(content);                             //Listet die Daten neu auf
+                console.log("Admin: Append erfolgreich");
+            }).fail(function (jqXHR, statusText, error) {                       //Fehlerausgabe
+                console.log('Admin: Error occured');
+                console.log('Admin: Response Code: ' + jqXHR.status + ' - Message: ' + jqXHR.responseText);
+                alert(jqXHR.responseText);
+            });
+        });
+        </script>
+  </body>
+</html>
