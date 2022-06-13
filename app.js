@@ -12,3 +12,4 @@ app.get("/",(req,res) => {
 });
 
 //Das ist ein Test Kommentar
+//Hier kommt der zweite Kommentar von bugFix
