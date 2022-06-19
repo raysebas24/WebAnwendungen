@@ -17,15 +17,15 @@
     <!--jQuery-Validation Plugin. Clientseitige Formularvalidierung-->
     <script src="js/jquery.validate.js"></script>
     <!--Eigener JS-File-->
-    <script src="lib/js1.js"></script>
+    <script src="public/js1.js"></script>
     <!--Eigener CSS-File-->
-    <link rel="stylesheet" type="text/css" href="lib/css1.css">
+    <link rel="stylesheet" type="text/css" href="public/css1.css">
 
     <title>hafen albstadt-sigmaringen</title>
   </head>
   <body>
       <nav class="navbar navbar-expand-sm fixed-top bg-1 navbar-dark">
-            <a class="navbar-brand" href="index.html">hafen albsig</a>
+            <a class="navbar-brand" href="index">hafen albsig</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"">
                <span class="navbar-toggler-icon"></span>
@@ -34,19 +34,19 @@
            <div class="collapse navbar-collapse" id="collapsibleNavbar">
                <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">home</a>
+                        <a class="nav-link" href="index">home</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="hafen.html">hafen</a>
+                       <a class="nav-link" href="hafen">hafen</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="betreiber.html">betreiber</a>
+                        <a class="nav-link" href="betreiber">betreiber</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="buchen.html">buchen</a>
+                        <a class="nav-link" href="buchen">buchen</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active-page" href="admin.html">admin</a>
+                        <a class="nav-link active-page" href="admin">admin</a>
                     </li>
                </ul>
            </div>
@@ -150,7 +150,7 @@
                 contentType: 'application/json; charset=utf-8',
                 cache: false,
 				dataType: 'json'
-            }).done(function (response) {                                       //Wird ausgeführt wenn die Ausführung abgeschlossen ist
+            }).done(function (response) {
                 console.log('Admin: Data loaded successfully');
                 console.log(response);
 
