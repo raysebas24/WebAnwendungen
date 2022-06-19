@@ -7,7 +7,7 @@ app.listen(3000, () => {                                            //Abhören d
 
 app.use(express.static(__dirname));                                 //Middleware, welche statische Datein bereitstellt. Hier unsere Webseite
 
-app.get("/",(req,res) => {                       //Dieser Code wird nie durchlaufen!!!
+app.get("/",(req,res) => {                          //Dieser Code wird nie durchlaufen!!!
     res.sendFile(__dirname + "/index.html");
     console.log(">>> send index <<<")
 });

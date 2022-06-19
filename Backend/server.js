@@ -54,7 +54,7 @@ try {
     console.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);     
     
     var serviceRouter = require('./services/buchungsanfrage.js');           //Einbinden der Router Middleware 'buchungsanfrage' (liegt unter 'services')
-    app.use(TOPLEVELPATH, serviceRouter);
+    app.use(TOPLEVELPATH, serviceRouter);                                   //Wenn '/api' aufgerufen wird soll der 'serviceRouter' aufgerufen werden
     
     // send default error message if no matching endpoint found
     app.use(function (request, response) {

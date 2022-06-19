@@ -1,7 +1,7 @@
 const helper = require('../helper.js');
-const BuchungsanfrageDao = require('../dao/buchungsanfrageDao.js');
+const BuchungsanfrageDao = require('../dao/buchungsanfrageDao.js');                 //Einbinden des Modules 'buchungsanfrageDao'
 const express = require('express');
-var serviceRouter = express.Router();
+var serviceRouter = express.Router();                                               //
 
 console.log('- Service Buchungsanfrage');
 
