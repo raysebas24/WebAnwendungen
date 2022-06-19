@@ -31,7 +31,7 @@ try {
     app.locals.dbConnection = dbConnection;
 
     console.log('Binding middleware...');
-    app.use(express.static(__dirname + '/public'))              //Ermöglicht das Ablegen von Dateien in '/public'
+    app.use(express.static(__dirname + '/public'))              //Middleware, welche statische Datein bereitstellt
     app.use(fileUpload({                                        //Verarbeiten von Dateiuploads und festlegen deren größe
         createParentPath: true,
         limits: {
@@ -50,10 +50,10 @@ try {
     app.use(morgan('dev'));
 
     // binding endpoints
-    const TOPLEVELPATH = '/api';
-    console.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
+    const TOPLEVELPATH = '/api';                                            //Deklariert meinen Top-Pfad, ab welchen dann umgelenkt werden soll. Alles ab localshost:8000/api
+    console.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);     
     
-    var serviceRouter = require('./services/buchungsanfrage.js');
+    var serviceRouter = require('./services/buchungsanfrage.js');           //Einbinden der Router Middleware 'buchungsanfrage' (liegt unter 'services')
     app.use(TOPLEVELPATH, serviceRouter);
     
     // send default error message if no matching endpoint found
@@ -66,7 +66,7 @@ try {
     // starting the Web Server
     console.log('\nBinding Port and starting Webserver...');
 
-    var webServer = app.listen(HTTP_PORT, () => {
+    var webServer = app.listen(HTTP_PORT, () => {                   //Abhören des angegebenen Ports. Hier HTTP_PORT = 8000
         console.log('Listening at localhost, port ' + HTTP_PORT);
         console.log('\nUsage: http://localhost:' + HTTP_PORT + TOPLEVELPATH + '/SERVICENAME/SERVICEMETHOD/....');
         console.log('\n\n-----------------------------------------');

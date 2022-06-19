@@ -1,19 +1,14 @@
-const express =require("express");
-const app = express();
+const express =require("express");                                  //Einbinden des Moduls 'express'. Webserver selbst
+const app = express();                                              //Initialisieren des 'express' Moduls
 
-app.listen(3000, () => {
+app.listen(3000, () => {                                            //Abhören des angegebenen Ports. Hier 3000
     console.log("Web-Server started and listening on port 3000");
 });
 
-app.use(express.static(__dirname));
+app.use(express.static(__dirname));                                 //Middleware, welche statische Datein bereitstellt. Hier unsere Webseite
 
-app.get("/",(req,res) => {
+app.get("/",(req,res) => {                       //Dieser Code wird nie durchlaufen!!!
     res.sendFile(__dirname + "/index.html");
+    console.log(">>> send index <<<")
 });
 
-//Das ist ein Test Kommentar. Ich erweiter KOmmenta aus main
-//Das ist ein Test Kommentar
-//Hier kommt der zweite Kommentar von bugFix
-//Hier noch ein Testkommentart von bugFix Nummer 2
-//Feature Kommentar 1
-//Feature KOmmentar 2

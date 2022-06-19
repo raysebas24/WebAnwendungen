@@ -19,14 +19,14 @@ serviceRouter.get('/buchungsanfrage/gib/:id', function(request, response) {
     }
 });
 
-serviceRouter.get('/buchungsanfrage/alle', function(request, response) {
+serviceRouter.get('/buchungsanfrage/alle', function(request, response) {                            //URL Aufruf für die Ausgabe 'aller' Datensätze
     console.log('Service Buchungsanfrage: Client requested all records');
 
-    const buchungsanfrageDao = new BuchungsanfrageDao(request.app.locals.dbConnection);
+    const buchungsanfrageDao = new BuchungsanfrageDao(request.app.locals.dbConnection);             //Neues Datenbank-Objekt -> lifetime = request lifetime
     try {
-        var arr = buchungsanfrageDao.loadAll();
-        console.log('Service Buchungsanfrage: Records loaded, count=' + arr.length);
-        response.status(200).json(arr);
+        var arr = buchungsanfrageDao.loadAll();                                                     //führt aus der 'buchungsanfrageDao' die 'loadAll()' funktion aus
+        console.log('Service Buchungsanfrage: Records loaded, count=' + arr.length);                //Gibt mir auf der Konsole die Anzahl der Buchungseinträe aus
+        response.status(200).json(arr);                                                             //Gibt mir auf der Konsole ein Erfolgreichen Response zurück
     } catch (ex) {
         console.error('Service Buchungsanfrage: Error loading all records. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });

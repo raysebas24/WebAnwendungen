@@ -2,7 +2,7 @@ const helper = require('../helper.js');
                                                     //Data Access Object: Programmierschnittstelle (API) für Datenbank Zugriff
 class BuchungsanfrageDao {                          //Klasse 'BuchungsanfrageDao'
 
-    constructor(dbConnection) {
+    constructor(dbConnection) {                     //'dbConnection' wurde in 'buchungsanfrage' global erstellt und beinhaltete die Datenbankanbindung
         this._conn = dbConnection;                  //_conn ist Name vom Objekt. dbConnection ist übergebener Parameter
     }
 
@@ -21,15 +21,15 @@ class BuchungsanfrageDao {                          //Klasse 'BuchungsanfrageDao
         return result;
     }
 
-    loadAll() {
-        var sql = 'SELECT * FROM Buchungsanfrage';
-        var statement = this._conn.prepare(sql);
-        var result = statement.all();
+    loadAll() {                                                 //Wird aus der 'buchungsanfrage' aus aufgerufen
+        var sql = 'SELECT * FROM Buchungsanfrage';              //SQL-Anweisung für die DB
+        var statement = this._conn.prepare(sql);                //prepare = Abfrage in SQL-Datenbank. (Platzhalter, die innerhalb der Datenbank ersetzt werden) [sorgt für Schutz vor SQL-Injections]
+        var result = statement.all();                           //SQL return
 
         if (helper.isArrayEmpty(result)) 
             return [];
         
-        return result;
+        return result;                                          //Gibt die gefunden Einträge zurück
     }
 
     exists(id) {
@@ -44,7 +44,7 @@ class BuchungsanfrageDao {                          //Klasse 'BuchungsanfrageDao
     }
 
     create(nachname = '', vorname = '', email='',handynr='',beginn='',ende='',bootslaenge='') {
-        var sql = 'INSERT INTO Buchungsanfrage (nachname,vorname,email,handynr,beginn,ende,bootslaenge) VALUES (?,?,?,?,?,?,?)';
+        var sql = 'INSERT INTO Buchungsanfrage (nachname,vorname,email,handynr,beginn,ende,bootslaenge) VALUES (?,?,?,?,?,?,?)';        // ? = Bind-Variablen. Daten an DB übergeben
         var statement = this._conn.prepare(sql);
         var params = [nachname,vorname,email,handynr,beginn,ende,bootslaenge];
         var result = statement.run(params);
