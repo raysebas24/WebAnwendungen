@@ -6,6 +6,7 @@ app.listen(3000, () => {
 });
 
 var path = require('path');
+
 //view engine
 app.set('view engine', 'ejs')
 
