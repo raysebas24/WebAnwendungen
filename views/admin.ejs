@@ -90,15 +90,6 @@
                                 </div>
                             </div>
                         </form>
-                        <!-- <form id="all-delete">
-                            <div class="row">
-                                <div class="col-md">
-                                    <p></p>
-                                    <button id="delete-all" class="btn btn-secondary float-left">Alle Anfragen löschen</button>
-                                </div>
-                            </div>
-                        </form>
-                    -->
                     </section>
                 </div>
             </section>
@@ -112,27 +103,21 @@
             window.addEventListener("load",function() {                         //Wird beim laden der Seite ausgeführt
                 var form =document.getElementById("delete");                    //Zugriff auf Element 'delete'
                 form.addEventListener("submit",function(event){                 //Wird ausgelöst wenn 'form' gesendet wird
-                    event.preventDefault();                                     //Geht in Default-Zustand wenn ein Fehler aufgetreten ist?!
+                    event.preventDefault();                                     //Verhindert Standard-Form-Verhalten
                 });
             });
 
             $('#delete-by-id').click(function() {                               //Wird beim Click auf 'Anfrage löschen' ausgeführt
-                //$('#delete').validate();                                      //???
                 console.log('Admin: button delete clicked');
                 if($('#delete').valid()) {                                      //Überprüft ob das Ausgewählte Formular gültig ist
-                    var id =$('#del-id').val();                                 //Gibt denn eingegebenen Wert (zu löschenden) zurück
+                    var id =$('#del-id').val();                                 //Gibt den eingegebenen Wert (zu löschenden) zurück
                     $.ajax({                                                    //Ausführen einer Asynchronen HTTP-Anfrage
-                        url: 'http://localhost:8000/api/buchungsanfrage/'+id,   //???
+                        url: 'http://localhost:8000/api/buchungsanfrage/'+id,   
                         method: 'delete',
                         contentType: 'application/json; charset=utf-8',
-                        cache: false,
-                        /*data: JSON.stringify(result)*/
+                        cache: false
                     }).done(function (response) {
-                        /*Hier JSON Objekt noch in Konsole ausgeben für Debugging
-                        Außerdem fehlt noch das Forwarding auf die Erfolgsbuchung, Clientseitige Überprüfung und Serverseitige Überprüfung*/
-                        /*let url = "https://www.w3docs.com";
-                        window.location.href = url;*/
-                        location.reload();                                      //Läd die aktuelle URL neu
+                        location.reload();                                      //Läd die aktuelle URL neu (nicht ganz sauber aber funktioniert)
                         console.log("Admin: jetzt bin ich in der Done-Funktion");
                         console.log(response);
                     }).fail(function (jqXHR, statusText, error) {               //Fehlerausgabe
@@ -153,13 +138,6 @@
             }).done(function (response) {
                 console.log('Admin: Data loaded successfully');
                 console.log(response);
-
-                /* die Idee bei diesem Prinzip ist, dass HTML Code als Text angesehen wird. 
-                    Diesen können wir häppchen-weise in einer Variable zusammen setzen 
-                    und dann auch ausgeben 
-                    Hinweis: Damit man Quotes/doppelte Anführungsstriche NICHT escapen muss, 
-                    kann man bei jQuery einfache Anführungszeichen verwenden    
-                */
                 // hilfsvariable anlegen
                 var content = '';
                 for (i = 0; i < response.length; i++) {
